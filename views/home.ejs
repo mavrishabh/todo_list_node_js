@@ -1,18 +1,20 @@
 <link rel="stylesheet" href="/css/home.css">
 
-<div id = "main-container">
-    <form action="/create-list" method="POST">
-        <table>
-            <tr>
-                <td>
-                    <label for="description">DESCRIPTION</label>
-                    <input type="text" name="description" placeholder="What do you need to do?" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="category">CATEGORY </label>
-                    <select name="category" id="category" onchange="categoryChange(this.options[this.selectedIndex].value)">
+
+
+<div id = "container">
+    <div class = "overflow-hidden container-lg card">
+        <form action="/create-list" method="POST">
+            <div class="row row-cols-1 justify-content-start">
+                <div class="col-12">
+                    <h6 class="card-subtitle mt-3 mb-2 text-muted">DESCRIPTION</h6>
+                    <input type="text" class="shadow w-100 p-1 desc" name="description" placeholder="What do you need to do?" required> 
+                </div>
+            </div>
+            <div class="row row-cols-2 justify-content-start">
+                <div class="col-6">
+                    <label for="category" class = "category-card mb-2">CATEGORY </label>
+                    <select name="category" id="category" class = "shadow w-100 p-2 mb-3 category-card" onchange="categoryChange(this.options[this.selectedIndex].value)" required>
                         <!-- <input name = "category" required> -->
                         <option disabled selected>--Select a category--</option>
                         <option value="Personal">Personal</option>
@@ -21,34 +23,36 @@
                         <option value="School">School</option>
                         <option value="Others">Others</option>
                     </select>
-                </td>
-                <td>
-                    <label for="date">DUE DATE</label>
-                    <input type="date" name="date" id="date" required>
-                </td>
-            </tr>
-        </table>
+                </div>
+                <div class="col-6 justify-content-start">
+                    <label for="date" class="due-date-card mb-2">DUE DATE</label>
+                    <input type="date" class="shadow w-100 p-1 mb-3 due-date-card" name="dateValue" id="date" required>
+                </div>
+            </div>
+            <div class="justify-content-center text-center">
+                <button type="submit" class="shadow-lg btn btn-success btn-lg rounded-pill" id="addButton"><i class="fa fa-plus-square me-2" > </i>Add Task</button>
+                <button type="submit" class="shadow-lg btn btn-danger btn-lg offset-md-1 rounded-pill" id="deleteButton"><i class="fa fa-trash-alt me-2"></i>Delete Tasks</button> 
+            </div>
+        </form>
         
         
-        <button type="submit" id="addButton">Add Task</button>
+    </div>
         
-        
-    </form>
     <!-- <form action="/delete-list" method="post"> -->
-        <button type="submit" id="deleteButton">Delete Tasks</button> 
     <!-- </form> -->
     <ul>
             
         <% for (let i of todo_list) { %>
-            <div class="todo">
+            <div class="card task-card changeC">
                 <div class="tick-box">
-                    <input type="checkbox" name="deletecheck" class="deletecheck" onclick="checkedOrNot()" uid = <%= i._id %> >
+                    <input type="checkbox" name="deletecheck" class="select-task deletecheck" onclick="checkedOrNot()" uid = <%= i._id %> >
                 </div>
                 <div class="card-body task-body"> 
                     <!-- <input type="checkbox" class="select-task" id="checkbox" name="<%= i._id %>"> -->
-                    <p class = "desc" uid = <%= i._id %> id=<%= i._id %>><%= i.description %></p>
-                    <p class = "catg"><%= i.category %></p>
-                    <p class = "dueDate" id=<%= i._id + i.dueDate %>><%= i.date %></p>
+                    <h5 id=<%= i._id %> class = "card-title dsc" uid = <%= i._id %>><%= i.description %></h5>
+                    <p class = "position-absolute top-50 end-0 translate-middle btn btn-primary"><%= i.category %></p>
+                    <p id= <%= i._id + 2 %> class = "text-muted dueDate" > <i class="far fa-calendar-alt me-2"></i> <%= i.date %></p>
+                    
                 </div>
             </div>
             
@@ -63,6 +67,7 @@
 
     </ul>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
