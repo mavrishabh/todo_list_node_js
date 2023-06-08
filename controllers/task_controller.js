@@ -1,8 +1,10 @@
 const Todo = require('../models/todo');
 
+// Setting up the home page
 module.exports.home = function(req, res){
 
     Todo.find({}).then(function(todo){ 
+        // rendering the page and providing title to it
             return res.render('home', {
                 title: "TODO List",
                 todo_list: todo
@@ -49,14 +51,15 @@ function Dates(dueDate){
     }else if(dueDate[1] == '12'){
         monapp=months[11];
     }
-    newdate =dueDate[2]+' '+monapp+', '+dueDate[0] // displaying date in dd-mm-yyyy formate
+    newdate =dueDate[2]+' '+monapp+', '+dueDate[0] // displaying date in dd mm, yyyy format. Eg - "21 June, 2023"
     return newdate;
 }
 
+// for creating a task
 module.exports.create = async function(req, res){
     
-    dueDate =req.body.dateValue.split('-'); // splitting date and taking montha value
-    let newdate='';
+    dueDate =req.body.dateValue.split('-'); // splitting date and taking month value
+    let newdate=''; //declaring empty array
     newdate= Dates(dueDate);     
     Todo.create({ // crating new todo and storing into DB
         description:req.body.description,
@@ -68,11 +71,11 @@ module.exports.create = async function(req, res){
 
 };
 
-// for deleting a contact
+// for deleting a task
 module.exports.delete = function(req, res){
     //getting the id of selected boxes
     let id = req.query.id;
-    console.log(id);
+    // console.log(id); //checking the ID
 
     //gives the length of the selected checkboxes
     let checkboxes=id.split(',');
@@ -81,7 +84,7 @@ module.exports.delete = function(req, res){
     for(let i=0;i<checkboxes.length;i++)
     {
         // find the item in the database using id and delte it
-        console.log(checkboxes[i]);
+        // console.log(checkboxes[i]); //checking whether it is correctly splitted or not
         Todo.findByIdAndDelete(checkboxes[i]).catch(err => {
             if(err)
             {

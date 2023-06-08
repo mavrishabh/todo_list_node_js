@@ -3,18 +3,33 @@
         <title>
             <%= title %>
         </title>
+
+        <!-- CDN for sweetalert2 -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.min.css">
+        <!-- CDN for font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- CDN fot Bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- Applying styles with home.css in the assets folder -->
         <link rel="stylesheet" href="/css/home.css">
 
         <%- style %>
     </head>
     <body>
+        <!-- Header file -->
             <%- include('_header'); %>
+            <!-- home.ejs file -->
             <%- body %> <!--here th e body part of home and userhome is going to run-->
+            <!-- An empty footer file -->
             <%- include('_footer'); %>    
         <%- script %>
         
+        <!-- script tag for JQery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- script tag for sweetalert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- script tag for the delete_todos.js file inside assets folder -->
+        <script type="text/javascript" src="/js/delete_todos.js"></script>
+
     </body>
 </html>

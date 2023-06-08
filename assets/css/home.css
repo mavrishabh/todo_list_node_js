@@ -64,16 +64,6 @@ body{
      width: 48%;
      
  }
- 
- .action-button-container{
-    margin: 20px 0;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
-}
 
 .task-card{
     display: inline-flex;
@@ -87,10 +77,6 @@ body{
     text-align: center;
     vertical-align: middle;
     padding-top: 5%;
-}
-
-.tag-box{
-    width: 20%;
 }
 
 input.select-task{
