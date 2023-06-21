@@ -1,6 +1,6 @@
 const development = {
     name: 'development',
-    db: 'codeial_development'
+    db: 'todos'
 }
 
 const production = {
